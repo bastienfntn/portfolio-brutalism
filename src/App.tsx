@@ -17,6 +17,14 @@ function App() {
           <span className="uppercase font-chivo text-[128px] leading-[110px]">developer</span>
         </div>
       </div>
+      <div className="w-full flex flex-col justify-center ms-20">
+        <span className="uppercase font-chivo text-[64px] leading-[70px]">Projects</span>
+        <div className="w-full h-1.5 bg-black"></div>
+        <span className="uppercase font-chivo text-[64px] leading-[70px]">Skills</span>
+        <div className="w-full h-1.5 bg-black"></div>
+        <span className="uppercase font-chivo text-[64px] leading-[70px]">About me</span>
+        <div className="w-full h-1.5 bg-black"></div>
+      </div>
     </div>
   )
 }
