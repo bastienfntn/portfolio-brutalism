@@ -44,7 +44,7 @@ function LandingPage() {
         </div>
       </div>
       <div className="w-full h-80 flex flex-col justify-center ms-20" ref={sectionTitles}>
-        {["About Me", "Projects", "Skills"].map((text, index) => (
+        {["About Me", "Projects", "Contact"].map((text, index) => (
           <SectionTitle key={index}>{text}</SectionTitle>
         ))}
       </div>
