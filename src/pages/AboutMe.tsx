@@ -29,7 +29,7 @@ function AboutMe({ className }: HTMLAttributes<HTMLDivElement>) {
     scene.add(light);
 
     new GLTFLoader().load('src/assets/my_avatar.glb', async (gltf) => {
-      new FBXLoader().load('src/assets/bow2.fbx', (fbx) => {
+      new FBXLoader().load('src/assets/idle.fbx', (fbx) => {
         const model = gltf.scene;
         model.position.y = -1;
 
