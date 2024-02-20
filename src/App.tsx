@@ -1,5 +1,5 @@
-import LandingPage from "./pages/LandingPage.tsx";
-import AboutMe from "./pages/AboutMe.tsx";
+import LandingPage from './pages/LandingPage';
+import AboutMe from './pages/AboutMe';
 
 function App() {
   return (
