@@ -1,8 +1,9 @@
+/* eslint-disable import/extensions */
 import * as THREE from 'three';
-import { HTMLAttributes, useEffect, useRef } from "react";
+import { HTMLAttributes, useEffect, useRef } from 'react';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 
 function AboutMe({ className }: HTMLAttributes<HTMLDivElement>) {
   const container = useRef<HTMLDivElement>(null);
@@ -12,7 +13,12 @@ function AboutMe({ className }: HTMLAttributes<HTMLDivElement>) {
     const scene = new THREE.Scene();
     scene.background = new THREE.Color('#F5F3F5');
 
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(
+      75,
+      window.innerWidth / window.innerHeight,
+      0.1,
+      1000,
+    );
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(2);
@@ -22,23 +28,17 @@ function AboutMe({ className }: HTMLAttributes<HTMLDivElement>) {
     const light = new THREE.AmbientLight('#ffffff');
     scene.add(light);
 
-    new GLTFLoader().load('src/assets/my_avatar.glb', async function (gltf) {
-      new FBXLoader().load('src/assets/bow2.fbx', function (fbx) {
-        const model = gltf.scene
-        gltf.scene.position.y = -1;
+    new GLTFLoader().load('src/assets/my_avatar.glb', async (gltf) => {
+      new FBXLoader().load('src/assets/bow2.fbx', (fbx) => {
+        const model = gltf.scene;
+        model.position.y = -1;
 
         mixer = new THREE.AnimationMixer(model);
         const action = mixer.clipAction(fbx.animations[0]);
         action.play();
 
         scene.add(model);
-
-
-      }, undefined, function (error) {
-        console.error(error);
       });
-    }, undefined, function (error) {
-      console.error(error);
     });
 
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -53,13 +53,16 @@ function AboutMe({ className }: HTMLAttributes<HTMLDivElement>) {
       controls.update();
       renderer.render(scene, camera);
       window.requestAnimationFrame(loop);
-    }
+    };
 
     loop();
   }, []);
   return (
-    <div className={`flex w-screen h-screen items-center ${className ?? ''}`} ref={container} />
-  )
+    <div
+      className={`flex w-screen h-screen items-center ${className ?? ''}`}
+      ref={container}
+    />
+  );
 }
 
 export default AboutMe;

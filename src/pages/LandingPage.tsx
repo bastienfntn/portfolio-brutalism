@@ -1,30 +1,34 @@
-import SectionTitle from "../components/atoms/SectionTitle.tsx";
-import Title from "../components/atoms/Title.tsx";
-import { HTMLAttributes, useRef } from "react";
-import gsap from "gsap";
+import { HTMLAttributes, useRef } from 'react';
+import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import Title from '../components/atoms/Title';
+import SectionTitle from '../components/atoms/SectionTitle';
 
 function LandingPage({ className }: HTMLAttributes<HTMLDivElement>) {
-
   const titles = useRef<HTMLDivElement>(null);
   const sectionTitles = useRef<HTMLDivElement>(null);
 
+  useGSAP(
+    () => {
+      gsap.from('.flex', {
+        x: -1000,
+        duration: 0.5,
+        stagger: 0.1,
+      });
+    },
+    { scope: titles },
+  );
 
-  useGSAP(() => {
-    gsap.from(".flex", {
-      x: -1000,
-      duration: 0.5,
-      stagger: 0.1,
-    });
-  }, { scope: titles });
-
-  useGSAP(() => {
-    gsap.from(".relative", {
-      x: 1000,
-      duration: 0.5,
-      stagger: 0.1,
-    });
-  }, { scope: sectionTitles });
+  useGSAP(
+    () => {
+      gsap.from('.relative', {
+        x: 1000,
+        duration: 0.5,
+        stagger: 0.1,
+      });
+    },
+    { scope: sectionTitles },
+  );
 
   return (
     <div className={`flex w-screen h-screen items-center ${className ?? ''}`}>
@@ -42,13 +46,16 @@ function LandingPage({ className }: HTMLAttributes<HTMLDivElement>) {
           <Title className="text-[128px] leading-[110px]">developer</Title>
         </div>
       </div>
-      <div className="w-full h-80 flex flex-col justify-center ms-20" ref={sectionTitles}>
-        {["About Me", "Projects", "Contact"].map((text, index) => (
-          <SectionTitle key={index}>{text}</SectionTitle>
+      <div
+        className="w-full h-80 flex flex-col justify-center ms-20"
+        ref={sectionTitles}
+      >
+        {['About Me', 'Projects', 'Contact'].map((text) => (
+          <SectionTitle key={`${text}-section`}>{text}</SectionTitle>
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default LandingPage;
