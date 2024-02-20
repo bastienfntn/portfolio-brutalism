@@ -1,10 +1,10 @@
 import * as THREE from 'three';
-import { useEffect, useRef } from "react";
+import { HTMLAttributes, useEffect, useRef } from "react";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 
-function AboutMe() {
+function AboutMe({ className }: HTMLAttributes<HTMLDivElement>) {
   const container = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const clock = new THREE.Clock();
@@ -58,7 +58,7 @@ function AboutMe() {
     loop();
   }, []);
   return (
-    <div className="flex w-screen h-screen overflow-hidden items-center" ref={container} />
+    <div className={`flex w-screen h-screen items-center ${className ?? ''}`} ref={container} />
   )
 }
 

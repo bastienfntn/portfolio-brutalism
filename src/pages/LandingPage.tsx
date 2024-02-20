@@ -1,11 +1,10 @@
 import SectionTitle from "../components/atoms/SectionTitle.tsx";
 import Title from "../components/atoms/Title.tsx";
-import { useRef } from "react";
+import { HTMLAttributes, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react';
 
-
-function LandingPage() {
+function LandingPage({ className }: HTMLAttributes<HTMLDivElement>) {
 
   const titles = useRef<HTMLDivElement>(null);
   const sectionTitles = useRef<HTMLDivElement>(null);
@@ -28,7 +27,7 @@ function LandingPage() {
   }, { scope: sectionTitles });
 
   return (
-    <div className="flex w-screen h-screen overflow-hidden items-center">
+    <div className={`flex w-screen h-screen items-center ${className ?? ''}`}>
       <div className="grid w-full grid-rows-3 m-8 pb-16 pt-14" ref={titles}>
         <div className="flex w-full h-full items-end space-x-4">
           <Title className="text-sm">Hi, I am</Title>
