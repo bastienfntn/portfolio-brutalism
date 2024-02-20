@@ -7,6 +7,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 
 function AboutMe({ className }: HTMLAttributes<HTMLDivElement>) {
   const container = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const clock = new THREE.Clock();
     let mixer: THREE.AnimationMixer;
@@ -57,11 +58,14 @@ function AboutMe({ className }: HTMLAttributes<HTMLDivElement>) {
 
     loop();
   }, []);
+
   return (
     <div
-      className={`flex w-screen h-screen items-center ${className ?? ''}`}
-      ref={container}
-    />
+      className={`flex flex-col w-screen h-screen items-center ${className ?? ''}`}
+    >
+      <span>Look ! It&apos;s me !</span>
+      <div ref={container} />
+    </div>
   );
 }
 
