@@ -8,7 +8,7 @@ function AboutMe({ className }: HTMLAttributes<HTMLDivElement>) {
     <div
       className={`flex flex-col w-screen h-screen items-center ${className ?? ''}`}
     >
-      <Canvas camera={{ position: [0, 0, 2] }}>
+      <Canvas camera={{ position: [0, 0, 2.3] }}>
         <ambientLight />
         <Avatar position={[0, -1, 0]} />
         <OrbitControls enableZoom={false} enablePan={false} />

@@ -1,21 +1,28 @@
-import { ThreeElements } from '@react-three/fiber';
+import * as THREE from 'three';
+import { ThreeElements, useFrame } from '@react-three/fiber';
 import { useEffect } from 'react';
 import { useGLTF, useFBX, useAnimations } from '@react-three/drei';
+import { AnimationClip } from 'three';
 
 function Avatar(props: ThreeElements['group']) {
   const { nodes, materials } = useGLTF('src/assets/my_avatar.glb');
   const { animations } = useFBX('src/assets/idle.fbx');
 
-  const { ref, names, actions } = useAnimations(animations);
+  const { ref, names, actions } = useAnimations<AnimationClip>(animations);
 
   useEffect(() => {
     actions[names[0]]?.play();
   }, [actions, names]);
 
+  useFrame((state) => {
+    const target = new THREE.Vector3(state.pointer.x, state.pointer.y, 1);
+    ref.current?.getObjectByName('Head')?.lookAt(target);
+  });
+
   return (
-    <group {...props} dispose={null} ref={ref}>
+    <group {...props} dispose={null}>
       <group rotation-x={-Math.PI / 2}>
-        <primitive object={nodes.Hips} />
+        <primitive object={nodes.Hips} ref={ref} />
         <skinnedMesh
           name="EyeLeft"
           geometry={nodes.EyeLeft.geometry}
