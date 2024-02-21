@@ -30,7 +30,9 @@ module.exports = {
   plugins: ['react-refresh', 'prettier'],
   rules: {
     'react/react-in-jsx-scope': 'off',
-    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/no-extraneous-dependencies': 'off',
     'prettier/prettier': ["error", { "singleQuote": true }],
+    'react/no-unknown-property': ['error', { ignore: ['geometry', 'material', 'skeleton', 'morphTargetDictionary', 'morphTargetInfluences', 'dispose', 'rotation-x', 'object'] }],
+    'react/jsx-props-no-spreading': 'off',
   },
 }
